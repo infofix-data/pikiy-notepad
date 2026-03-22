@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikiy Notebook</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">PN</div>
+                <h1 class="logo-text">Pikiy Notebook</h1>
+                <span class="version-badge">by Pikiy</span>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+                    🌓
+                </button>
+            </div>
+        </header>
+
+        <!-- Language Bar -->
+        <div class="language-bar">
+            <div class="active-language">
+                <span class="active-flag" id="activeFlag">🇬🇧</span>
+                <span id="activeLanguageName">English</span>
+            </div>
+            <div class="language-selector" id="languageSelector">
+                <button class="lang-trigger">
+                    🌐 Change Language
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <!-- Languages will be populated by JS -->
+                </div>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span>📝 Words</span>
+                    <strong id="wordCount">0</strong>
+                </div>
+                <div class="stat">
+                    <span>🔤 Characters</span>
+                    <strong id="charCount">0</strong>
+                </div>
+                <div class="stat">
+                    <span>⏱️ Reading</span>
+                    <strong id="readTime">0</strong>
+                    <span>min</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-grid">
+            <!-- Editor Section -->
+            <div class="editor-section">
+                <div class="editor-toolbar">
+                    <div class="tool-group">
+                        <button class="tool-btn" id="voiceStartBtn">
+                            🎤 Start Voice
+                        </button>
+                        <button class="tool-btn" id="voiceStopBtn">
+                            ⏹️ Stop
+                        </button>
+                    </div>
+                    <div class="tool-group">
+                        <button class="tool-btn" id="translateBtn">
+                            🌍 Translate
+                        </button>
+                        <button class="tool-btn" id="speakBtn">
+                            🔊 Speak
+                        </button>
+                    </div>
+                    <div class="tool-group">
+                        <button class="tool-btn success" id="saveNoteBtn">
+                            💾 Save
+                        </button>
+                        <button class="tool-btn" id="downloadBtn">
+                            📥 Download
+                        </button>
+                        <button class="tool-btn danger" id="clearBtn">
+                            🗑️ Clear
+                        </button>
+                    </div>
+                </div>
+
+                <div class="voice-status-bar" id="voiceStatusBar">
+                    <div class="status-indicator" id="statusIndicator"></div>
+                    <span id="voiceStatusText">Ready. Click Start Voice to begin.</span>
+                </div>
+
+                <div class="editor-container">
+                    <div id="editor" contenteditable="true" 
+                         placeholder="Start typing or use voice input...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="sidebar">
+                <!-- Suggestions Card -->
+                <div class="card suggestions-card">
+                    <div class="card-header">
+                        <h3>
+                            <span>✨ Smart Suggestions</span>
+                            <span class="badge" id="suggestionCount">0</span>
+                        </h3>
+                        <button class="text-btn" id="checkGrammarBtn">
+                            Check All
+                        </button>
+                    </div>
+                    <div class="card-content" id="suggestionsList">
+                        <div class="empty-state">
+                            ✨ Suggestions will appear here as you type
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Translation Card -->
+                <div class="card translation-card">
+                    <div class="card-header">
+                        <h3>🌍 Instant Translation</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="lang-pair">
+                            <select id="fromLang" class="lang-select"></select>
+                            <button class="swap-btn" id="swapLangsBtn">↔️</button>
+                            <select id="toLang" class="lang-select"></select>
+                        </div>
+                        <button class="btn-primary full-width" id="quickTranslateBtn">
+                            Translate Now
+                        </button>
+                        <div class="quick-actions">
+                            <button class="small-btn" id="toEnglishBtn">→ English</button>
+                            <button class="small-btn" id="toSpanishBtn">→ Spanish</button>
+                            <button class="small-btn" id="toFrenchBtn">→ French</button>
+                            <button class="small-btn" id="toGermanBtn">→ German</button>
+                            <button class="small-btn" id="toArabicBtn">→ Arabic</button>
+                            <button class="small-btn" id="toHindiBtn">→ Hindi</button>
+                            <button class="small-btn" id="toBengaliBtn">→ Bengali</button>
+                            <button class="small-btn" id="toJapaneseBtn">→ Japanese</button>
+                            <button class="small-btn" id="toChineseBtn">→ Chinese</button>
+                            <button class="small-btn" id="toRussianBtn">→ Russian</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes Card -->
+                <div class="card notes-card">
+                    <div class="card-header">
+                        <h3>📒 Saved Notes</h3>
+                        <button class="text-btn danger" id="clearAllNotesBtn">
+                            Clear All
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="search-box">
+                            <input type="text" id="searchNotes" 
+                                   placeholder="Search notes...">
+                        </div>
+                        <div class="notes-list" id="notesList">
+                            <div class="empty-state">No saved notes yet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
